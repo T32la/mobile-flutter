@@ -1,3 +1,4 @@
+import 'package:api/personaje/personajevista.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -23,7 +24,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
 
   Future<void> fetchPersonaje() async {
     final url =
-        Uri.parse("https://dragonball-api.com/api/characters?page=2&limit=5");
+        Uri.parse("https://dragonball-api.com/api/characters?page=1&limit=15");
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -62,11 +63,20 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                   trailing: Text(character['affiliation'] ?? "Sin afiliación"),
                   onTap: () {
                     //Accion que se realiza cuando se da click en cualquier elemento de la lista
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                          content:
-                              Text("Seleccionaste a ${character['name']}")),
-                    );
+
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   SnackBar(
+                    //       content:
+                    //           Text("Seleccionaste a ${character['name']}")),
+                    // );
+
+                    // Navegacion para otra vista
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PersonajeScreen(
+                                  personajeId: character["id"],
+                                )));
                   },
                 );
               },
