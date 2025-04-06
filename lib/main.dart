@@ -1,20 +1,17 @@
+import 'package:apicat/views/Home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const MyCat());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyCat extends StatelessWidget {
+  const MyCat({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      home: MainScreen(),
     );
   }
 }
