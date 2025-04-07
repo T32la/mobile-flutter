@@ -2,7 +2,7 @@ import 'package:apicat/views/cat/cat.dart';
 import 'package:flutter/material.dart';
 
 class CatScreen extends StatelessWidget {
-  final int catsId;
+  final String catsId;
 
   const CatScreen({Key? key, required this.catsId}) : super(key: key);
 

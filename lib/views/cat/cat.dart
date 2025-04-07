@@ -4,7 +4,7 @@ import 'dart:convert';
 
 // State
 class CatWidget extends StatefulWidget {
-  final int id;
+  final String id;
 
   CatWidget({Key? key, required this.id}) : super(key: key);
   @override
@@ -27,11 +27,11 @@ class _CatWidgetState extends State<CatWidget> {
     obtenerCat();
   }
 
-  // Function call the API, fetching data cat.
   Future<void> obtenerCat() async {
-    final url = Uri.parse(' https://cataas.com/cat/${widget.id}');
-    final response = await http.get(url);
+    // Function call the API, fetching data cat.
+    final url = Uri.parse('https://cataas.com/cat/${widget.id}');
 
+    final response = await http.get(url);
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       setState(() {
@@ -39,7 +39,7 @@ class _CatWidgetState extends State<CatWidget> {
         isLoading = false;
       });
     } else {
-      throw Exception("Error al cargar datos");
+      throw Exception("Error al cargar datos: ${response.statusCode}");
     }
   }
 
@@ -53,9 +53,16 @@ class _CatWidgetState extends State<CatWidget> {
               : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.network(cats!["mimetype"]),
-                    SizedBox(height: 10),
-                    Text(cats!["tags"])
+                    // Image.network(cats!["mimetype"]),
+                    Image.network(
+                      "https://cataas.com/cat/${widget.id}",
+                      height: 300,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Icon(Icons.error),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(cats!["tags"]?.join(", ") ??
+                        "Sin etiquetas"), // Mostrar tags correctamente
                   ],
                 ),
     );
