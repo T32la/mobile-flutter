@@ -9,11 +9,9 @@ class HomeCat extends StatelessWidget {
       appBar: AppBar(title: Text("Cat's Home")),
       body: Column(
         children: [
-          Image.network("https://cataas.com/cat", // Imagen aleatoria
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover),
-          Expanded(child: CatListScreen()),
+          Expanded(
+            child: CatListScreen(),
+          ),
         ],
       ),
     );

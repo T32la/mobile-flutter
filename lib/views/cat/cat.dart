@@ -1,46 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 // State
 class CatWidget extends StatefulWidget {
   final String id;
+  final List<String>? tags; // Agregar etiquetas como parámetro opcional
 
-  CatWidget({Key? key, required this.id}) : super(key: key);
+  CatWidget({Key? key, required this.id, this.tags}) : super(key: key);
+
   @override
   _CatWidgetState createState() => _CatWidgetState();
 }
 
 // Class with design of WidgetCat
 class _CatWidgetState extends State<CatWidget> {
-  // Create variable save data cat
-  Map<String, dynamic>? cats;
-
-  // Create variable boolean of detected the looding
+  // Variable para detectar si se está cargando
   bool isLoading = true;
 
-  // Start the init State
-  // Call the function data cat fetch api with use API, base id
   @override
   void initState() {
     super.initState();
-    obtenerCat();
-  }
-
-  Future<void> obtenerCat() async {
-    // Function call the API, fetching data cat.
-    final url = Uri.parse('https://cataas.com/cat/${widget.id}');
-
-    final response = await http.get(url);
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      setState(() {
-        cats = data;
-        isLoading = false;
-      });
-    } else {
-      throw Exception("Error al cargar datos: ${response.statusCode}");
-    }
+    // No es necesario hacer una solicitud adicional para obtener la imagen
+    setState(() {
+      isLoading = false; // Directamente cargar la imagen
+    });
   }
 
   @override
@@ -48,23 +30,20 @@ class _CatWidgetState extends State<CatWidget> {
     return Center(
       child: isLoading
           ? CircularProgressIndicator()
-          : cats == null
-              ? Text('Error the charger the cat')
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Image.network(cats!["mimetype"]),
-                    Image.network(
-                      "https://cataas.com/cat/${widget.id}",
-                      height: 300,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.error),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(cats!["tags"]?.join(", ") ??
-                        "Sin etiquetas"), // Mostrar tags correctamente
-                  ],
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.network(
+                  "https://cataas.com/cat/${widget.id}", // URL directa para la imagen
+                  height: 300,
+                  errorBuilder: (context, error, stackTrace) =>
+                      const Icon(Icons.error),
                 ),
+                const SizedBox(height: 20),
+                Text(widget.tags?.join(", ") ??
+                    "Sin etiquetas"), // Mostrar etiquetas
+              ],
+            ),
     );
   }
 }

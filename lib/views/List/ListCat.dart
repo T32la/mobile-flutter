@@ -53,21 +53,6 @@ class _CatListScreenState extends State<CatListScreen> {
               itemBuilder: (context, index) {
                 final cat = listcats[index];
                 final imageUrl = "https://cataas.com/cat/${cat["id"]}";
-
-                // return ListTile(
-                //   leading: catlist["mimetype"] != null
-                //       ? Image.network(catlist[''],
-                //           width: 50, height: 50, fit: BoxFit.cover)
-                //       : Icon(Icons.catching_pokemon),
-                //   onTap: () {
-                //     // Navigation views
-                //     Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //             builder: (context) =>
-                //                 CatScreen(catsId: catlist["id"])));
-                //   },
-                // );
                 return ListTile(
                   leading: Image.network(
                     imageUrl, // Construir la URL correcta con el ID
