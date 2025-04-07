@@ -2,8 +2,21 @@
 
 A new Flutter project.
 
-## Idea Proyect
+## Final Project
 
+## Home View
+![image](https://github.com/user-attachments/assets/d69e4fd0-cc75-4bf5-a832-7df9e28d686c)
+
+## List View
+![image](https://github.com/user-attachments/assets/3eca782d-98ff-4d93-861e-9545f1eb43de)
+
+## One element View
+
+![image](https://github.com/user-attachments/assets/07402186-b8aa-4f27-933c-63d10e02c291)
+
+
+
+## Idea Proyect
 
 ## View 1
 ![](https://i.pinimg.com/736x/79/0e/c7/790ec729b9cda07912fa7ea98932f39a.jpg)
