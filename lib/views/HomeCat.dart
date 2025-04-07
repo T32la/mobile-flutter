@@ -1,4 +1,4 @@
-/////VISTA 2
+// HomeCat
 import 'package:apicat/views/List/ListCat.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +7,12 @@ class HomeCat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Cat's Home")),
-      body: Center(
-        child: CatListScreen(),
+      body: Column(
+        children: [
+          Expanded(
+            child: CatListScreen(),
+          ),
+        ],
       ),
     );
   }
